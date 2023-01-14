@@ -29,7 +29,7 @@ export class NasaComponent {
   description$ = this.apod$.pipe(map(data => (data as any)?.explanation));
   src$ = this.apod$.pipe(map(data => (data as any)?.hdurl));
 
-  ngOnInint() {
+  ngOnInit() {
     this.apod$
       .pipe(componentDestroy$())
       .subscribe();
