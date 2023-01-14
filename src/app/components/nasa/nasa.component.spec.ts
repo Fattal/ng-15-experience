@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NasaComponent } from './nasa.component';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { InjectionToken } from "@angular/core";
 
 describe('NasaComponent', () => {
   let component: NasaComponent;
@@ -8,7 +10,9 @@ describe('NasaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NasaComponent ]
+      declarations: [],
+      imports: [HttpClientTestingModule],
+      providers: []
     })
     .compileComponents();
 
