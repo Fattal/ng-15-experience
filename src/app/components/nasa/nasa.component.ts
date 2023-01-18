@@ -2,7 +2,6 @@ import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {getApod} from '../../services/nasa-api/nasa-apod';
-import {componentDestroy$} from '../../common/component-destroy';
 
 @Component({
   selector: 'app-nasa',
@@ -28,10 +27,4 @@ export class NasaComponent {
   apod$ = getApod();
   description$ = this.apod$.pipe(map(data => (data as any)?.explanation));
   src$ = this.apod$.pipe(map(data => (data as any)?.hdurl));
-
-  ngOnInit() {
-    this.apod$
-      .pipe(componentDestroy$())
-      .subscribe();
-  }
 }

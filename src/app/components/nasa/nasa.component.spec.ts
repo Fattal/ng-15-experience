@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NasaComponent } from './nasa.component';
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { InjectionToken } from "@angular/core";
+import {NASA_API_KEY} from '../../services/nasa-api/nasa-api-key';
 
 describe('NasaComponent', () => {
   let component: NasaComponent;
@@ -12,7 +11,9 @@ describe('NasaComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [HttpClientTestingModule],
-      providers: []
+      providers: [
+        { provide: NASA_API_KEY, useValue: '' },
+      ]
     })
     .compileComponents();
 
