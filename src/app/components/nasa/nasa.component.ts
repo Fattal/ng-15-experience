@@ -2,6 +2,8 @@ import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {getApod} from '../../services/nasa-api/nasa-apod';
+import { BitmexService } from 'src/app/services/binance/binance-api';
+import { componentDestroy$ } from 'src/app/common/component-destroy';
 
 @Component({
   selector: 'app-nasa',
@@ -27,4 +29,9 @@ export class NasaComponent {
   apod$ = getApod();
   description$ = this.apod$.pipe(map(data => (data as any)?.explanation));
   src$ = this.apod$.pipe(map(data => (data as any)?.hdurl));
+  messages$ = this.bitmex.messages$;
+
+  constructor(private bitmex: BitmexService) {
+    this.messages$.pipe(componentDestroy$()).subscribe();
+  }
 }
