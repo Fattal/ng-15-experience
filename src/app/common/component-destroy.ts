@@ -6,6 +6,5 @@ export function componentDestroy$<T>(): UnaryFunction<Observable<T>, Observable<
   const destroyer$ = new ReplaySubject<void>(1);
   viewRef.onDestroy(() => destroyer$.next())
 
-  debugger;
   return (observable: Observable<T>) => observable.pipe(takeUntil(destroyer$));
 }
