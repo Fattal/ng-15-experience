@@ -11,8 +11,6 @@ export const routes: Routes = [
     path: 'nasa',
     loadComponent: () => import('./components/nasa/nasa.component').then(c => c.NasaComponent),
     // canActivate: [isLoggedIn(['LOGGED_IN'])],
-    providers: [
-      { provide: NASA_API_KEY, useValue: 'dtPCmDZ7axUFtMTnqaT9603a3UJRcjpDAm9mElrM' },
-    ],
-  }
+  },
+  { path: '**', redirectTo: 'nasa' },
 ];

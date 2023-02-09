@@ -1,7 +1,8 @@
 import {CommonModule} from '@angular/common';
 import { Component, inject } from '@angular/core';
-import {map} from 'rxjs/operators';
-import {getApod} from '../../services/nasa-api/nasa-apod';
+import { shareReplay } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { getApod } from '../../services/nasa-api/nasa-apod';
 import { BitmexService } from 'src/app/services/binance/binance-api';
 
 @Component({
@@ -25,7 +26,7 @@ import { BitmexService } from 'src/app/services/binance/binance-api';
   imports: [CommonModule],
 })
 export class NasaComponent {
-  apod$ = getApod();
+  apod$ = getApod().pipe(shareReplay(1));
   description$ = this.apod$.pipe(map(data => (data as any)?.explanation));
   src$ = this.apod$.pipe(map(data => (data as any)?.hdurl));
   messages$ = inject(BitmexService).messages$;
