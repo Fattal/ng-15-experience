@@ -8,7 +8,7 @@ export enum BitmexConnectionCommand {
 }
 
 export enum BitmexDataType {
-  Default = 'trade',
+  Default = 'quoteBin1m',
   Trade = 'trade',
   OrderBook = 'orderBookL2_25',
   // todo other
@@ -39,7 +39,7 @@ export class BitmexService {
   }
 
   public runConnection() {
-    const url = this.CONNECTION_ADDRESS + `?subscribe=${ BitmexDataType.Default }`;
+    const url = this.CONNECTION_ADDRESS + `?subscribe=quoteBin1m`;
     this.webSocket.connect(url).subscribe(
       (message) => this.data$.next(message)
     );
